@@ -21,6 +21,9 @@ final class MovieDetailViewModel: ObservableObject {
     characterOccurances(isAlgorithmic)
   }
   
+  /**
+   This function was a part of an algorithm question. Commented out in the view for now.
+   */
   private func characterOccurances(_ isAlgorithmic: Bool) {
     if isAlgorithmic {
       occurances = movie.title.characterCountsAlgorithmic().description
@@ -57,21 +60,21 @@ struct MovieDetailView: View {
           }
           .frame(width: geo.size.width, height: 500)
           
-          VStack(alignment: .leading, spacing: 15) {
-            Text("Original title: \(viewModel.movie.originalTitle)")
-              .font(.subheadline)
-            Text("Release Date: \(viewModel.movie.releaseDate)")
-              .font(.footnote)
-            Text("Overview: \(viewModel.movie.overview)")
-              .font(.footnote)
-            Text("Character occurances: \(viewModel.occurances)")
-              .font(.footnote)
-          }
-          .padding()
-          .background(Color(UIColor.secondarySystemGroupedBackground))
-          .clipShape(.rect(cornerRadius: 6))
-          .padding(.horizontal)
-          Spacer()
+          GroupBox(
+            label: Text("Original title: \(viewModel.movie.originalTitle)"),
+            content: {
+              VStack(alignment: .leading, spacing: 15) {
+                Text("Release Date: \(viewModel.movie.releaseDate)")
+                  .font(.footnote)
+                Text("Overview: \(viewModel.movie.overview)")
+                  .fixedSize(horizontal: false, vertical: true)
+                  .font(.footnote)
+                /*Text("Character occurances: \(viewModel.occurances)")
+                 .font(.footnote)*/
+              }
+            }
+          )
+          .padding(.horizontal, 10)
         }
         .navigationTitle(viewModel.movie.title)
         .navigationBarTitleDisplayMode(.inline)
