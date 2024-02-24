@@ -62,7 +62,6 @@ final class MoviesViewModel: ObservableObject {
 
 struct MoviesView: View {
   @StateObject var viewModel: MoviesViewModel
-  @Namespace private var movieAnimation
   
   func listRow(movie: Movie) -> some View {
     HStack {
@@ -96,7 +95,7 @@ struct MoviesView: View {
     NavigationView {
       List(viewModel.filteredMovies, id: \.id) { movie in
         NavigationLink {
-          MovieDetailView(viewModel: MovieDetailViewModel(movie: movie), movieAnimation: movieAnimation)
+          MovieDetailView(viewModel: MovieDetailViewModel(movie: movie))
         } label: {
           listRow(movie: movie)
           .frame(height: 50)

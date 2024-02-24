@@ -35,7 +35,6 @@ final class MovieDetailViewModel: ObservableObject {
 
 struct MovieDetailView: View {
   @StateObject var viewModel: MovieDetailViewModel
-  var movieAnimation: Namespace.ID
   
   var body: some View {
     ScrollView {
